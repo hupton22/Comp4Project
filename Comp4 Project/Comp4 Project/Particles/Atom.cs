@@ -8,6 +8,6 @@ namespace Comp4_Project.Particles
 {
     class Atom : Particle
     {
-        
+        //this is a test comment
     }
 }
