@@ -33,5 +33,14 @@ namespace Comp4_Project.Particles
         {
             return yPos;
         }
+
+        public double DistanceTo(Particle otherParticle)
+        {   
+            double xDist = this.GetXPos() - otherParticle.GetXPos();
+            double yDist = this.GetYPos() - otherParticle.GetYPos();
+            double distance = Math.Sqrt((xDist*xDist)+(yDist*yDist));
+
+            return distance;
+        }
     }
 }
