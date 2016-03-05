@@ -6,22 +6,19 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Comp4_Project
+namespace Comp4_Project.Particles
 {
-    public class Ball
+    class Neutron : Particle
     {
         //The width of every single ball
         public static int BallWidth = 30;
-
-        private int xPos;
-        private int yPos;
 
         private int velocityX;
         private int velocityY;
 
         private Brush color;
 
-        public Ball()
+        public Neutron()
         {
             Brush result = Brushes.Transparent;
 
@@ -38,12 +35,6 @@ namespace Comp4_Project
             color = (Brush)properties[random].GetValue(null, null);
         }
 
-        //public Ball(int xPos, int yPos)
-        //{
-        //    this.yPos = yPos;
-        //    this.xPos = xPos;
-        //}
-
         public Brush PickBrush()
         {
             return color;
@@ -51,55 +42,32 @@ namespace Comp4_Project
 
         public void move(int maxWidth, int maxHeight)
         {
-            int newXPos = xPos + velocityX;
+            int newXPos = GetXPos() + velocityX;
             
             if (newXPos < 0)
             {
                 newXPos = 0;
                 velocityX = (velocityX * -1);
             }
-            else if ((newXPos + Ball.BallWidth) > maxWidth)
+            else if ((newXPos + Neutron.BallWidth) > maxWidth)
             {
                 velocityX = (velocityX * -1);
             }
 
-            int newYPos = yPos + velocityY;
+            int newYPos = GetYPos() + velocityY;
 
             if (newYPos < 0)
             {
                 newYPos = 0;
                 velocityY = (velocityY * -1);
             }
-            else if ((newYPos + Ball.BallWidth) > maxHeight)
+            else if ((newYPos + Neutron.BallWidth) > maxHeight)
             {
                 velocityY = (velocityY * -1);
             }
 
             SetXPos(newXPos);
             SetYPos(newYPos);
-        }
-
-        /**
-         *  Getter and setter for position
-         */
-        public void SetXPos(int xPos)
-        {
-            this.xPos = xPos;
-        }
-
-        public int GetXPos()
-        {
-            return xPos;
-        }
-
-        public void SetYPos(int yPos)
-        {
-            this.yPos = yPos;
-        }
-
-        public int GetYPos()
-        {
-            return yPos;
         }
 
         /**

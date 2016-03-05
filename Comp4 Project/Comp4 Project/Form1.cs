@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Comp4_Project.Particles;
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +15,7 @@ namespace Comp4_Project
     public partial class Form1 : Form
     {
 
-        Ball[] balls = new Ball[20];
+        Neutron[] balls = new Neutron[20];
 
         public Form1()
         {
@@ -26,13 +28,13 @@ namespace Comp4_Project
 
             for (int i = 0; i < balls.Length; i++)
             {
-                balls[i] = new Ball();
+                balls[i] = new Neutron();
 
                 balls[i].SetVelocityX(random.Next(1, 10));
                 balls[i].SetVelocityY(random.Next(1, 10));
 
-                balls[i].SetXPos(random.Next(0, ClientSize.Width - Ball.BallWidth));
-                balls[i].SetYPos(random.Next(0, ClientSize.Height - Ball.BallWidth));
+                balls[i].SetXPos(random.Next(0, ClientSize.Width - Neutron.BallWidth));
+                balls[i].SetYPos(random.Next(0, ClientSize.Height - Neutron.BallWidth));
                 
             }
 
@@ -69,10 +71,10 @@ namespace Comp4_Project
 
         private void drawBalls(PaintEventArgs e)
         {
-            foreach (Ball ball in balls) 
+            foreach (Neutron ball in balls) 
             {
-                e.Graphics.FillEllipse(ball.PickBrush(), ball.GetXPos(), ball.GetYPos(), Ball.BallWidth, Ball.BallWidth);
-                e.Graphics.DrawEllipse(Pens.Black, ball.GetXPos(), ball.GetYPos(), Ball.BallWidth, Ball.BallWidth);
+                e.Graphics.FillEllipse(ball.PickBrush(), ball.GetXPos(), ball.GetYPos(), Neutron.BallWidth, Neutron.BallWidth);
+                e.Graphics.DrawEllipse(Pens.Black, ball.GetXPos(), ball.GetYPos(), Neutron.BallWidth, Neutron.BallWidth);
             }
 
         }
