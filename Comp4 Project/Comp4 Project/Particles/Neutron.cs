@@ -10,37 +10,18 @@ namespace Comp4_Project.Particles
 {
     class Neutron : Particle
     {
-        //The width of every single ball
-        public static int BallWidth = 30;
+        //The width of every ball
+        public static int BallWidth = 5;
 
         private int velocityX;
         private int velocityY;
 
-        private Brush color;
-
-        public Neutron()
-        {
-            Brush result = Brushes.Transparent;
-
-            Random rnd = new Random();
-            rnd.Next(1,100);
-
-            System.Threading.Thread.Sleep(50);
-
-            Type brushesType = typeof(Brushes);
-
-            PropertyInfo[] properties = brushesType.GetProperties();
-
-            int random = rnd.Next(0, properties.Length);
-            color = (Brush)properties[random].GetValue(null, null);
-        }
-
         public Brush PickBrush()
         {
-            return color;
+            return Brushes.Red;//setting the colour of all neutrons to red
         }
 
-        public void move(int maxWidth, int maxHeight)
+        public void move(int maxWidth, int maxHeight)//moving each neutron
         {
             int newXPos = GetXPos() + velocityX;
             

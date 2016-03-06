@@ -30,10 +30,10 @@ namespace Comp4_Project
             {
                 balls[i] = new Neutron();
 
-                balls[i].SetVelocityX(random.Next(1, 10));
-                balls[i].SetVelocityY(random.Next(1, 10));
+                balls[i].SetVelocityX(random.Next(-5, 5));//randomly selwecting a velocity fir each neutron in the x and y directions
+                balls[i].SetVelocityY(random.Next(-5, 5));
 
-                balls[i].SetXPos(random.Next(0, ClientSize.Width - Neutron.BallWidth));
+                balls[i].SetXPos(random.Next(0, ClientSize.Width - Neutron.BallWidth));//randomly selecting a location for each ball within the bounds of the window
                 balls[i].SetYPos(random.Next(0, ClientSize.Height - Neutron.BallWidth));
                 
             }
