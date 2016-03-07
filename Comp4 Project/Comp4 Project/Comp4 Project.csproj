@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="Particles\Atom.cs" />
     <Compile Include="Particles\Neutron.cs" />
-    <Compile Include="FindDistance.cs" />
+    <Compile Include="getCoords.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

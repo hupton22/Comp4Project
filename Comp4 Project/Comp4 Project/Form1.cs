@@ -15,8 +15,9 @@ namespace Comp4_Project
     public partial class Form1 : Form
     {
 
-        Neutron[] neutrons = new Neutron[20]; //create an array that stores items of the custom type "neutron"
-        Atom[] atoms = new Atom[10];
+        Neutron[] neutrons = new Neutron[5]; //create an array that stores items of the custom type "neutron"
+        Atom[] atoms = new Atom[1];
+        public double realDist = 0;
 
         public Form1()
         {
@@ -69,7 +70,7 @@ namespace Comp4_Project
 
         private void timerMoveBall_Tick(object sender, EventArgs e)
         {
-            moveBalls();
+            moveBalls();//look down
             Refresh();
         }
 
@@ -80,19 +81,23 @@ namespace Comp4_Project
                 neutrons[i].move(ClientSize.Width, ClientSize.Height);
                 for (int check = 0; check < atoms.Length; check++)//checks the displacement of the current neutron from all atoms in the simulation
                 {
-                    double xDist = ((neutrons[i].GetXPos) - (atoms[check].GetXPos)) * ((neutrons[i].GetXPos) - (atoms[check].GetXPos));
-                    double yDist = 
-                    float realDist = (xDist * xDist) - (yDist - yDist);
-                    if (realDist < 30) & (atoms[check].hasSplit == false)
+                    //double ax = neutrons[i].GetXPos();
+                    double xDist = (neutrons[i].GetXPos()) - (atoms[check].GetXPos());//find difference in x coordinate
+                    double yDist = (neutrons[i].GetYPos()) - (atoms[check].GetYPos());//find difference in y coordinate
+                    realDist = Math.Sqrt((xDist * xDist) - (yDist * yDist));//pythagoras
+                    if ((realDist < 0.1) && (atoms[check].hasSplit == false))
                     {
-                        atoms[check].split();
+                        atoms[check].split();//split the atom that the neutron has approached
                     }
                 }
             }   
         }
+
+        //private static Array addNeutrons
+
         private void drawBalls(PaintEventArgs e)//draws all screen objects
         {
-            foreach (Neutron ball in neutrons)//names the neutron we are looking at "ball, so it is refered to later
+            foreach (Neutron ball in neutrons)//names the neutron we are looking at "ball", so it is refered to later
             {
                 e.Graphics.FillEllipse(ball.PickBrush(), ball.GetXPos(), ball.GetYPos(), Neutron.NeutronWidth, Neutron.NeutronWidth);
                 e.Graphics.DrawEllipse(Pens.Black, ball.GetXPos(), ball.GetYPos(), Neutron.NeutronWidth, Neutron.NeutronWidth);

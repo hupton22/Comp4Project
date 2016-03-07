@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Comp4_Project
 {
-    interface ParticleInterface
+    interface getCoords
     {
         int GetXPos();
 

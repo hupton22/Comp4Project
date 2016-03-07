@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Comp4_Project.Particles
 {
-    class Neutron : Particle
+    class Neutron : Particle//Atom inherits all properties and methods of the Particle class
     {
         //The width of every ball
         public static int NeutronWidth = 5;

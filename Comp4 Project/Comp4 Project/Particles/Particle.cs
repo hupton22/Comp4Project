@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Comp4_Project.Particles
 {
-    class Particle : ParticleInterface
+    class Particle : getCoords
     {
         private int xPos;
         private int yPos;
@@ -21,7 +21,7 @@ namespace Comp4_Project.Particles
 
         public int GetXPos()
         {
-            return xPos;
+            return xPos;//could be this.xPos
         }
 
         public void SetYPos(int yPos)

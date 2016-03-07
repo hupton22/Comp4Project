@@ -13,15 +13,27 @@ namespace Comp4_Project.Particles
         public static int AtomWidth = 50;
         public bool hasSplit = false; 
 
-        public Brush PickBrush()
+        public Brush PickBrush()//returns a colour for the form to fill the ellipse with
         {
-            return Brushes.Blue;//setting the colour of all atoms to blue
+            if (this.hasSplit == false)
+            {
+                return Brushes.Blue;//returns blue if atom has not split
+            }
+
+            else if (this.hasSplit == true)
+            {
+                return Brushes.Green;//returns green if atom has split
+            }
+
+            else return Brushes.White;
         }
+
 
         public void split()
         {
-            //change colour
+            this.hasSplit = true;
             //create more neutrons
+            //addNeutrons(); 
         }
     }
 }
