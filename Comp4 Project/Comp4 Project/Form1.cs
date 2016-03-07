@@ -15,7 +15,8 @@ namespace Comp4_Project
     public partial class Form1 : Form
     {
 
-        Neutron[] balls = new Neutron[20];
+        Neutron[] neutrons = new Neutron[20]; //create an array that stores items of the custom type "neutron"
+        Atom[] atoms = new Atom[10];
 
         public Form1()
         {
@@ -26,23 +27,34 @@ namespace Comp4_Project
         {
             Random random = new Random();
 
-            for (int i = 0; i < balls.Length; i++)
+            for (int i = 0; i < neutrons.Length; i++)
             {
-                balls[i] = new Neutron();
+                neutrons[i] = new Neutron();
 
-                balls[i].SetVelocityX(random.Next(-5, 5));//randomly selwecting a velocity fir each neutron in the x and y directions
-                balls[i].SetVelocityY(random.Next(-5, 5));
+                neutrons[i].SetVelocityX(random.Next(-5, 5));//randomly selwecting a velocity for each neutron in the x and y directions
+                neutrons[i].SetVelocityY(random.Next(-5, 5));
 
-                balls[i].SetXPos(random.Next(0, ClientSize.Width - Neutron.BallWidth));//randomly selecting a location for each ball within the bounds of the window
-                balls[i].SetYPos(random.Next(0, ClientSize.Height - Neutron.BallWidth));
+                neutrons[i].SetXPos(random.Next(0, ClientSize.Width - Neutron.NeutronWidth));//randomly selecting a location for each neutron within the bounds of the window
+                neutrons[i].SetYPos(random.Next(0, ClientSize.Height - Neutron.NeutronWidth));
                 
             }
 
-            this.SetStyle(
-                ControlStyles.AllPaintingInWmPaint |
-                ControlStyles.UserPaint |
-                ControlStyles.OptimizedDoubleBuffer,
-                true);
+            for (int i = 0; i < atoms.Length; i++ )
+            {
+                atoms[i] = new Atom();
+
+                atoms[i].SetXPos(random.Next(0, ClientSize.Width - Atom.AtomWidth));//randomly selecting a location for each atom within the bounds of the window, ensuring it is not spawned off the edge
+                atoms[i].SetYPos(random.Next(0, ClientSize.Height - Atom.AtomWidth));
+
+                //maybe add a loop here to check if the atom currently having its location set
+                //is too close to any other atoms
+            }
+
+                this.SetStyle(
+                    ControlStyles.AllPaintingInWmPaint |
+                    ControlStyles.UserPaint |
+                    ControlStyles.OptimizedDoubleBuffer,
+                    true);
             this.UpdateStyles();
         
         }
@@ -63,18 +75,33 @@ namespace Comp4_Project
 
         private void moveBalls()
         {
-            for (int i = 0; i < balls.Length; i++)
+            for (int i = 0; i < neutrons.Length; i++)
             {
-                balls[i].move(ClientSize.Width, ClientSize.Height);
+                neutrons[i].move(ClientSize.Width, ClientSize.Height);
+                for (int check = 0; check < atoms.Length; check++)//checks the displacement of the current neutron from all atoms in the simulation
+                {
+                    double xDist = ((neutrons[i].GetXPos) - (atoms[check].GetXPos)) * ((neutrons[i].GetXPos) - (atoms[check].GetXPos));
+                    double yDist = 
+                    float realDist = (xDist * xDist) - (yDist - yDist);
+                    if (realDist < 30) & (atoms[check].hasSplit == false)
+                    {
+                        atoms[check].split();
+                    }
+                }
             }   
         }
-
-        private void drawBalls(PaintEventArgs e)
+        private void drawBalls(PaintEventArgs e)//draws all screen objects
         {
-            foreach (Neutron ball in balls) 
+            foreach (Neutron ball in neutrons)//names the neutron we are looking at "ball, so it is refered to later
             {
-                e.Graphics.FillEllipse(ball.PickBrush(), ball.GetXPos(), ball.GetYPos(), Neutron.BallWidth, Neutron.BallWidth);
-                e.Graphics.DrawEllipse(Pens.Black, ball.GetXPos(), ball.GetYPos(), Neutron.BallWidth, Neutron.BallWidth);
+                e.Graphics.FillEllipse(ball.PickBrush(), ball.GetXPos(), ball.GetYPos(), Neutron.NeutronWidth, Neutron.NeutronWidth);
+                e.Graphics.DrawEllipse(Pens.Black, ball.GetXPos(), ball.GetYPos(), Neutron.NeutronWidth, Neutron.NeutronWidth);
+            }
+
+            foreach (Atom a in atoms)
+            {
+                e.Graphics.FillEllipse(a.PickBrush(), a.GetXPos(), a.GetYPos(), Atom.AtomWidth, Atom.AtomWidth);
+                e.Graphics.DrawEllipse(Pens.Black, a.GetXPos(), a.GetYPos(), Atom.AtomWidth, Atom.AtomWidth);
             }
 
         }

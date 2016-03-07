@@ -11,7 +11,7 @@ namespace Comp4_Project.Particles
     class Neutron : Particle
     {
         //The width of every ball
-        public static int BallWidth = 5;
+        public static int NeutronWidth = 5;
 
         private int velocityX;
         private int velocityY;
@@ -30,7 +30,7 @@ namespace Comp4_Project.Particles
                 newXPos = 0;
                 velocityX = (velocityX * -1);
             }
-            else if ((newXPos + Neutron.BallWidth) > maxWidth)
+            else if ((newXPos + Neutron.NeutronWidth) > maxWidth)
             {
                 velocityX = (velocityX * -1);
             }
@@ -42,7 +42,7 @@ namespace Comp4_Project.Particles
                 newYPos = 0;
                 velocityY = (velocityY * -1);
             }
-            else if ((newYPos + Neutron.BallWidth) > maxHeight)
+            else if ((newYPos + Neutron.NeutronWidth) > maxHeight)
             {
                 velocityY = (velocityY * -1);
             }

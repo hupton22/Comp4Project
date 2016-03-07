@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Comp4_Project.Particles
 {
-    class Particle : FindDistance
+    class Particle : ParticleInterface
     {
         private int xPos;
         private int yPos;

@@ -35,7 +35,7 @@
             // timerMoveBall
             // 
             this.timerMoveBall.Enabled = true;
-            this.timerMoveBall.Interval = 10;
+            this.timerMoveBall.Interval = 1;
             this.timerMoveBall.Tick += new System.EventHandler(this.timerMoveBall_Tick);
             // 
             // Form1
