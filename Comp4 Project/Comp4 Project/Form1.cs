@@ -18,9 +18,8 @@ namespace Comp4_Project
 
         //public int atomNumber = 20;
         
-        Atom[] atoms = new Atom[60]; //Are that your atoms you want to hit? the number isn't important, I was just trying to put them in a grid :/ okay
-        //Neutron[] neutrons = new Neutron[5]; //creates and pop//ulates an array with neutron object //you can't really work with an array here you might want to use a list or something like that
-        List<Neutron> neutronList = new List<Neutron>(); //There you can add serveral neutrons but watch out not to modify the list while going through the list
+        Atom[] atoms = new Atom[60]; 
+        List<Neutron> neutronList = new List<Neutron>(); 
 
         public double realDist = 0;
 
@@ -108,30 +107,7 @@ namespace Comp4_Project
 
         private void moveBalls()
         {
-            //for (int i = 0; i < neutrons.Length; i++)
-            //{
-            //    neutrons[i].move(ClientSize.Width, ClientSize.Height);
-
-                //would you like to say that particles can interact with each other, by interaction I mean neutron hits atom and then they split : . yes, I want the atom to split and make two more neutrons when that happens.
-                //okay, you are iterating over the neutrons and then over the atoms? why this way? : 
-                //I look at neutron number 1, and neutron #1 looks at every atom, then if that is fine, neutron #2 looks at all the atoms 
-                //can we change that a bit? so that a particle can tell when it is interacting no matter if a neutron is meeting a neutron or an atom? 
-                // If that makes it easier, yeah. I don't need the neutrons to hit each other, though, well it would make it a bit easier ;) so lets do that go to the particles class and copy those two loops before you change the view...
-                //for (int check = 0; check < atoms.Length; check++)//checks the displacement of the current neutron from all atoms in the simulation
-                //{
-                    //double ax = neutrons[i].GetXPos();
-                    //double xDist = (neutrons[i].GetXPos() - 25) - (atoms[check].GetXPos());//find difference in x coordinate
-                    //double yDist = (neutrons[i].GetYPos() - 50) - (atoms[check].GetYPos() - 25);//find difference in y coordinate
-                    //realDist = Math.Sqrt((xDist * xDist) + (yDist * yDist));//pythagoras
-                    //if ((realDist < (Atom.AtomWidth / 2)) && (atoms[check].hasSplit == false))
-                    //{
-                    //    atoms[check].split();//split the atom that the neutron has approached
-                    //}
-                //}
-            //} 
-
-            //Does that look nice and simple? : it is cleaner than what I had :) Let's try this one...  well something doesn't really look right does it is is the problem I had earlier and the reason why I was adding and subtracting the coordinates okay let me fix this 
-
+            
             foreach (Neutron neutron in neutronList)
             {
                 neutron.move(ClientSize.Width, ClientSize.Height); //Move all neutrons first
@@ -166,11 +142,11 @@ namespace Comp4_Project
                 }
             }
 
-            //Add new neutrons here
+      
             neutronList.AddRange(newNeutrons);
         }
 
-        //private static Array addNeutrons
+ 
 
         private void drawBalls(PaintEventArgs e)//draws all screen objects
         {

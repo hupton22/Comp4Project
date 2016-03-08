@@ -18,7 +18,7 @@ namespace Comp4_Project.Particles
         {
         }
 
-        public static int AtomWidth = 20;//yes
+        public static int AtomWidth = 20;
         public bool hasSplit = false; 
 
         public Brush PickBrush()//returns a colour for the form to fill the ellipse with

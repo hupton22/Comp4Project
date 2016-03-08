@@ -53,7 +53,7 @@ namespace Comp4_Project.Particles
 
         protected override void OnInteraction()
         {
-            //Nothing should be done on an interaction here shouldn't it?
+            
         }
 
         public override int GetSize()

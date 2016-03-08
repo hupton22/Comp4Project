@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Comp4_Project.Particles
 {
-    abstract class Particle : getCoords //Do not use a lowercase name c# name convention (afaik)
+    abstract class Particle : getCoords 
     {
         private int xPos;
         private int yPos;
@@ -45,7 +45,7 @@ namespace Comp4_Project.Particles
             return yPos;
         }
 
-        public abstract int GetSize(); //Returns the size of the particle, has to be implemented by subclasses, don't care how they implement it yet
+        public abstract int GetSize(); //Returns the size of the particle
 
         protected abstract void OnInteraction(); //This method will be called on interaction.
 
