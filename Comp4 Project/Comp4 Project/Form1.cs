@@ -15,8 +15,8 @@ namespace Comp4_Project
     public partial class Form1 : Form
     {
 
-        Neutron[] neutrons = new Neutron[50]; //create an array that stores items of the custom type "neutron"
-        Atom[] atoms = new Atom[1];
+        Neutron[] neutrons = new Neutron[2]; //create an array that stores items of the custom type "neutron"
+        Atom[] atoms = new Atom[10];
         public double realDist = 0;
 
         public Form1()
@@ -82,14 +82,12 @@ namespace Comp4_Project
                 for (int check = 0; check < atoms.Length; check++)//checks the displacement of the current neutron from all atoms in the simulation
                 {
                     //double ax = neutrons[i].GetXPos();
-                    double xDist = (neutrons[i].GetXPos()) - (atoms[check].GetXPos());//find difference in x coordinate
-                    double yDist = (neutrons[i].GetYPos()) - (atoms[check].GetYPos());//find difference in y coordinate
+                    double xDist = (neutrons[i].GetXPos()-25) - (atoms[check].GetXPos());//find difference in x coordinate
+                    double yDist = (neutrons[i].GetYPos()-50) - (atoms[check].GetYPos()-25);//find difference in y coordinate
                     realDist = Math.Sqrt((xDist * xDist) + (yDist * yDist));//pythagoras
-                    if ((realDist < 10) && (atoms[check].hasSplit == false))
+                    if ((realDist < (Atom.AtomWidth/2)) && (atoms[check].hasSplit == false))
                     {
                         atoms[check].split();//split the atom that the neutron has approached
-                        //e.Graphics.DrawEllipse(Pens.Black, neutrons[i].GetXPos(), neutrons[i].GetYPos(), Atom.AtomWidth, Atom.AtomWidth);
-                        //e.Graphics.DrawEllipse(Pens.Black, atoms[check].GetXPos(), atoms[check].GetYPos(), Atom.AtomWidth, Atom.AtomWidth);
                     }
                 }
             }   
