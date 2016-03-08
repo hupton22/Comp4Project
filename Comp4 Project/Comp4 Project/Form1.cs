@@ -65,7 +65,7 @@ namespace Comp4_Project
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             e.Graphics.Clear(BackColor);
 
-            drawBalls();
+            drawBalls(e);
         }
 
         private void timerMoveBall_Tick(object sender, EventArgs e)
@@ -97,7 +97,7 @@ namespace Comp4_Project
 
         //private static Array addNeutrons
 
-        private void drawBalls(PainEventArgs, e)//draws all screen objects
+        private void drawBalls(PaintEventArgs e)//draws all screen objects
         {
             foreach (Neutron ball in neutrons)//names the neutron we are looking at "ball", so it is refered to later
             {
