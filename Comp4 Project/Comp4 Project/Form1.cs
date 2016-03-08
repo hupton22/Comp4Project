@@ -18,7 +18,7 @@ namespace Comp4_Project
 
         //public int atomNumber = 20;
         
-        Atom[] atoms = new Atom[60]; 
+        Atom[] atoms = new Atom[84]; 
         List<Neutron> neutronList = new List<Neutron>(); 
 
         public double realDist = 0;
@@ -58,7 +58,7 @@ namespace Comp4_Project
             }
                         
             int numberOfAtomsPerLine = 12;
-            int numberOfAtomsPerRow = 5;
+            int numberOfAtomsPerRow = 7;
             int xDiff = (ClientSize.Width - 50) / numberOfAtomsPerLine; //to calculate the difference in the width of each x of the atoms
             int yDiff = (ClientSize.Height - 50) / numberOfAtomsPerRow; //to calculate the difference in the height of each x of the atom
 
