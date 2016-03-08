@@ -18,8 +18,8 @@ namespace Comp4_Project
 
         //public int atomNumber = 20;
         
-        Atom[] atoms = new Atom[50];
-        Neutron[] neutrons = new Neutron[150]; //creates and populates an array with neutron objects
+        Atom[] atoms = new Atom[41];
+        Neutron[] neutrons = new Neutron[5]; //creates and populates an array with neutron objects
 
         public double realDist = 0;
 
@@ -44,34 +44,71 @@ namespace Comp4_Project
                 
             }
 
-            for (int i = 0; i < atoms.Length; i++)
+            //int arrayPos = 0;
+            //atoms[i].SetXPos(random.Next(0, ClientSize.Width - Atom.AtomWidth));//randomly selecting a location for each atom within the bounds of the window, ensuring it is not spawned off the edge
+            //atoms[i].SetYPos(random.Next(0, ClientSize.Height - Atom.AtomWidth));
+
+            //for (int m = 0; m < 5; m++)//nested for loops to put atoms in a grid
+            //{
+            //    if (((i * 10) < (ClientSize.Width - Atom.AtomWidth+10) && ((m * 10) < (ClientSize.Width - Atom.AtomWidth+10))))
+            //    {
+            //        atoms[arrayPos] = new Atom();
+            //        atoms[arrayPos].SetXPos(i * 10);
+            //        atoms[arrayPos].SetYPos(m * 10);
+            //        arrayPos = (arrayPos + 1);
+            //    }                   
+            //}
+
+            //atoms[i].SetXPos(i * 30);
+            //atoms[i].SetYPos(i * 30);
+
+            //maybe add a loop here to check if the atom currently having its location set
+            //is too close to any other atoms
+
+            //for (int k = 0; k < atoms.Length; k++)
+            //{
+            //    for (int l = 0; l <atoms.Length; l++)
+            //    {
+            //        double xDist = (atoms[k].GetXPos()) - (atoms[l].GetXPos());//find difference in x coordinate
+            //        double yDist = (atoms[k].GetYPos()) - (atoms[l].GetYPos());//find difference in y coordinate
+            //        realDist = Math.Sqrt((xDist * xDist) + (yDist * yDist));//pythagoras
+            //        int x = k;
+            //        int y = l;
+            //        if ((realDist < (Atom.AtomWidth)) && (x != y))//making sure we are not comparing an atom to itself!
+            //        {
+            //            atoms[k].SetXPos(random.Next(0, ClientSize.Width - Atom.AtomWidth));//reassign
+            //            atoms[k].SetYPos(random.Next(0, ClientSize.Height - Atom.AtomWidth));
+            //        }
+            //    }
+            //}
+
+            for (int i = 0; i < 11; i++)
             {
                 atoms[i] = new Atom();
-
-                atoms[i].SetXPos(random.Next(0, ClientSize.Width - Atom.AtomWidth));//randomly selecting a location for each atom within the bounds of the window, ensuring it is not spawned off the edge
-                atoms[i].SetYPos(random.Next(0, ClientSize.Height - Atom.AtomWidth));
-
-                //maybe add a loop here to check if the atom currently having its location set
-                //is too close to any other atoms
-
-                for (int k = 0; k < 50; k++)
-                {
-                    for (int l = 0; l < 50; l++)
-                    {
-                        double xDist = (atoms[k].GetXPos()) - (atoms[l].GetXPos());//find difference in x coordinate
-                        double yDist = (atoms[k].GetYPos()) - (atoms[l].GetYPos());//find difference in y coordinate
-                        realDist = Math.Sqrt((xDist * xDist) + (yDist * yDist));//pythagoras
-                        int x = k;
-                        int y = l;
-                        if ((realDist < (Atom.AtomWidth)) && (x != y))//making sure we are not comparing an atom to itself!
-                        {
-                            atoms[k].SetXPos(random.Next(0, ClientSize.Width - Atom.AtomWidth));//reassign
-                            atoms[k].SetYPos(random.Next(0, ClientSize.Height - Atom.AtomWidth));
-                        }
-                    }
-                }
+                atoms[i].SetXPos((i * 55) + 10);
+                atoms[i].SetYPos(10);               
             }
-            //logic to relcoate atoms that are too close to each other
+
+            for (int i = 11; i < 21; i++)
+            {
+                atoms[i] = new Atom();
+                atoms[i].SetXPos(((i - 11) * 55) + 10);
+                atoms[i].SetYPos(10 + Atom.AtomWidth);
+            }
+
+            for (int i = 21; i < 31; i++)
+            {
+                atoms[i] = new Atom();
+                atoms[i].SetXPos((i - 21 * 55) + 10);
+                atoms[i].SetYPos(2 * (Atom.AtomWidth + 10));
+            }
+
+            for (int i = 31; i < 41; i++)
+            {
+                atoms[i] = new Atom();
+                atoms[i].SetXPos((i - 31 * 55) + 10);
+                atoms[i].SetYPos(3 * (Atom.AtomWidth + 10));
+            }
             
                 this.SetStyle(
                     ControlStyles.AllPaintingInWmPaint |
@@ -104,10 +141,10 @@ namespace Comp4_Project
                 for (int check = 0; check < atoms.Length; check++)//checks the displacement of the current neutron from all atoms in the simulation
                 {
                     //double ax = neutrons[i].GetXPos();
-                    double xDist = (neutrons[i].GetXPos()-25) - (atoms[check].GetXPos());//find difference in x coordinate
-                    double yDist = (neutrons[i].GetYPos()-50) - (atoms[check].GetYPos()-25);//find difference in y coordinate
+                    double xDist = (neutrons[i].GetXPos() - 25) - (atoms[check].GetXPos());//find difference in x coordinate
+                    double yDist = (neutrons[i].GetYPos() - 50) - (atoms[check].GetYPos() - 25);//find difference in y coordinate
                     realDist = Math.Sqrt((xDist * xDist) + (yDist * yDist));//pythagoras
-                    if ((realDist < (Atom.AtomWidth/2)) && (atoms[check].hasSplit == false))
+                    if ((realDist < (Atom.AtomWidth / 2)) && (atoms[check].hasSplit == false))
                     {
                         atoms[check].split();//split the atom that the neutron has approached
                     }
@@ -130,7 +167,6 @@ namespace Comp4_Project
                 e.Graphics.FillEllipse(a.PickBrush(), a.GetXPos(), a.GetYPos(), Atom.AtomWidth, Atom.AtomWidth);
                 e.Graphics.DrawEllipse(Pens.Black, a.GetXPos(), a.GetYPos(), Atom.AtomWidth, Atom.AtomWidth);
             }
-
         }
     }
 }
