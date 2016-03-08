@@ -18,8 +18,9 @@ namespace Comp4_Project
 
         //public int atomNumber = 20;
         
-        Atom[] atoms = new Atom[41];
-        Neutron[] neutrons = new Neutron[5]; //creates and populates an array with neutron objects
+        Atom[] atoms = new Atom[60]; //Are that your atoms you want to hit? the number isn't important, I was just trying to put them in a grid :/ okay
+        //Neutron[] neutrons = new Neutron[5]; //creates and pop//ulates an array with neutron object //you can't really work with an array here you might want to use a list or something like that
+        List<Neutron> neutronList = new List<Neutron>(); //There you can add serveral neutrons but watch out not to modify the list while going through the list
 
         public double realDist = 0;
 
@@ -28,88 +29,60 @@ namespace Comp4_Project
             InitializeComponent();
         }
 
+        private double DegreeToRadian(int angle)
+        {
+            return Math.PI * angle / 180.0;
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             Random random = new Random();
 
-            for (int i = 0; i < neutrons.Length; i++)
+            int startNeutrons = 1;
+            for (int i = 0; i < startNeutrons; i++)
             {
-                neutrons[i] = new Neutron();
+                Neutron neutron = new Neutron();
 
-                neutrons[i].SetVelocityX(random.Next(-5, 5));//randomly selwecting a velocity for each neutron in the x and y directions
-                neutrons[i].SetVelocityY(random.Next(-5, 5));
+                //int angle = (random.Next(1, 360));
 
-                neutrons[i].SetXPos(random.Next(0, ClientSize.Width - Neutron.NeutronWidth));//randomly selecting a location for each neutron within the bounds of the window
-                neutrons[i].SetYPos(random.Next(0, ClientSize.Height - Neutron.NeutronWidth));
+
+                //double a = ();
+                //neutron.SetVelocityX(Math.Cos(DegreeToRadian(angle)));
+
+                neutron.SetVelocityX(random.Next(1, 5));
+                neutron.SetVelocityY(random.Next(1, 5));
+
+                neutron.SetXPos(random.Next(0, ClientSize.Width - Neutron.NeutronWidth));
+                neutron.SetXPos(random.Next(0, ClientSize.Height - Neutron.NeutronWidth));
+
+                neutronList.Add(neutron);
+            }
+                        
+            int numberOfAtomsPerLine = 12;
+            int numberOfAtomsPerRow = 5;
+            int xDiff = (ClientSize.Width - 50) / numberOfAtomsPerLine; //to calculate the difference in the width of each x of the atoms
+            int yDiff = (ClientSize.Height - 50) / numberOfAtomsPerRow; //to calculate the difference in the height of each x of the atom
+
+            int x = xDiff; //The x-coordinate of the paint area
+            int y = yDiff; //The y-coordinate of the paint area
+            int counter = 0;
+
+            for (int i = 0; i < atoms.Length; i++)
+            {
+                //start a new row
+                if (counter >= numberOfAtomsPerLine)
+                {
+                    y = y + yDiff;
+                    x = xDiff;
+                    counter = 0; //reset the counter
+                }
+
+                atoms[i] = new Atom(x, y);
+                x = x + xDiff;
                 
+                counter++;
             }
 
-            //int arrayPos = 0;
-            //atoms[i].SetXPos(random.Next(0, ClientSize.Width - Atom.AtomWidth));//randomly selecting a location for each atom within the bounds of the window, ensuring it is not spawned off the edge
-            //atoms[i].SetYPos(random.Next(0, ClientSize.Height - Atom.AtomWidth));
-
-            //for (int m = 0; m < 5; m++)//nested for loops to put atoms in a grid
-            //{
-            //    if (((i * 10) < (ClientSize.Width - Atom.AtomWidth+10) && ((m * 10) < (ClientSize.Width - Atom.AtomWidth+10))))
-            //    {
-            //        atoms[arrayPos] = new Atom();
-            //        atoms[arrayPos].SetXPos(i * 10);
-            //        atoms[arrayPos].SetYPos(m * 10);
-            //        arrayPos = (arrayPos + 1);
-            //    }                   
-            //}
-
-            //atoms[i].SetXPos(i * 30);
-            //atoms[i].SetYPos(i * 30);
-
-            //maybe add a loop here to check if the atom currently having its location set
-            //is too close to any other atoms
-
-            //for (int k = 0; k < atoms.Length; k++)
-            //{
-            //    for (int l = 0; l <atoms.Length; l++)
-            //    {
-            //        double xDist = (atoms[k].GetXPos()) - (atoms[l].GetXPos());//find difference in x coordinate
-            //        double yDist = (atoms[k].GetYPos()) - (atoms[l].GetYPos());//find difference in y coordinate
-            //        realDist = Math.Sqrt((xDist * xDist) + (yDist * yDist));//pythagoras
-            //        int x = k;
-            //        int y = l;
-            //        if ((realDist < (Atom.AtomWidth)) && (x != y))//making sure we are not comparing an atom to itself!
-            //        {
-            //            atoms[k].SetXPos(random.Next(0, ClientSize.Width - Atom.AtomWidth));//reassign
-            //            atoms[k].SetYPos(random.Next(0, ClientSize.Height - Atom.AtomWidth));
-            //        }
-            //    }
-            //}
-
-            for (int i = 0; i < 11; i++)
-            {
-                atoms[i] = new Atom();
-                atoms[i].SetXPos((i * 55) + 10);
-                atoms[i].SetYPos(10);               
-            }
-
-            for (int i = 11; i < 21; i++)
-            {
-                atoms[i] = new Atom();
-                atoms[i].SetXPos(((i - 11) * 55) + 10);
-                atoms[i].SetYPos(10 + Atom.AtomWidth);
-            }
-
-            for (int i = 21; i < 31; i++)
-            {
-                atoms[i] = new Atom();
-                atoms[i].SetXPos((i - 21 * 55) + 10);
-                atoms[i].SetYPos(2 * (Atom.AtomWidth + 10));
-            }
-
-            for (int i = 31; i < 41; i++)
-            {
-                atoms[i] = new Atom();
-                atoms[i].SetXPos((i - 31 * 55) + 10);
-                atoms[i].SetYPos(3 * (Atom.AtomWidth + 10));
-            }
-            
                 this.SetStyle(
                     ControlStyles.AllPaintingInWmPaint |
                     ControlStyles.UserPaint |
@@ -135,28 +108,73 @@ namespace Comp4_Project
 
         private void moveBalls()
         {
-            for (int i = 0; i < neutrons.Length; i++)
-            {
-                neutrons[i].move(ClientSize.Width, ClientSize.Height);
-                for (int check = 0; check < atoms.Length; check++)//checks the displacement of the current neutron from all atoms in the simulation
-                {
+            //for (int i = 0; i < neutrons.Length; i++)
+            //{
+            //    neutrons[i].move(ClientSize.Width, ClientSize.Height);
+
+                //would you like to say that particles can interact with each other, by interaction I mean neutron hits atom and then they split : . yes, I want the atom to split and make two more neutrons when that happens.
+                //okay, you are iterating over the neutrons and then over the atoms? why this way? : 
+                //I look at neutron number 1, and neutron #1 looks at every atom, then if that is fine, neutron #2 looks at all the atoms 
+                //can we change that a bit? so that a particle can tell when it is interacting no matter if a neutron is meeting a neutron or an atom? 
+                // If that makes it easier, yeah. I don't need the neutrons to hit each other, though, well it would make it a bit easier ;) so lets do that go to the particles class and copy those two loops before you change the view...
+                //for (int check = 0; check < atoms.Length; check++)//checks the displacement of the current neutron from all atoms in the simulation
+                //{
                     //double ax = neutrons[i].GetXPos();
-                    double xDist = (neutrons[i].GetXPos() - 25) - (atoms[check].GetXPos());//find difference in x coordinate
-                    double yDist = (neutrons[i].GetYPos() - 50) - (atoms[check].GetYPos() - 25);//find difference in y coordinate
-                    realDist = Math.Sqrt((xDist * xDist) + (yDist * yDist));//pythagoras
-                    if ((realDist < (Atom.AtomWidth / 2)) && (atoms[check].hasSplit == false))
+                    //double xDist = (neutrons[i].GetXPos() - 25) - (atoms[check].GetXPos());//find difference in x coordinate
+                    //double yDist = (neutrons[i].GetYPos() - 50) - (atoms[check].GetYPos() - 25);//find difference in y coordinate
+                    //realDist = Math.Sqrt((xDist * xDist) + (yDist * yDist));//pythagoras
+                    //if ((realDist < (Atom.AtomWidth / 2)) && (atoms[check].hasSplit == false))
+                    //{
+                    //    atoms[check].split();//split the atom that the neutron has approached
+                    //}
+                //}
+            //} 
+
+            //Does that look nice and simple? : it is cleaner than what I had :) Let's try this one...  well something doesn't really look right does it is is the problem I had earlier and the reason why I was adding and subtracting the coordinates okay let me fix this 
+
+            foreach (Neutron neutron in neutronList)
+            {
+                neutron.move(ClientSize.Width, ClientSize.Height); //Move all neutrons first
+            }
+
+            List<Neutron> newNeutrons = new List<Neutron>();
+            Random random = new Random();
+            foreach (Particle atom in atoms)
+            {
+                foreach (Particle neutron in neutronList)
+                {
+                    if (atom.InteractsWith(neutron))
                     {
-                        atoms[check].split();//split the atom that the neutron has approached
+                        //neturons can be created in here
+                        int xPos = atom.GetXPos();
+                        int yPos = atom.GetYPos();
+
+                        for (int i = 0; i < 2; i++)
+                        {
+                            int vX = random.Next(1, 5);
+                            int vY = random.Next(1, 5);
+
+                            Neutron newNeutron = new Neutron();
+                            newNeutron.SetXPos(xPos);
+                            newNeutron.SetYPos(yPos);
+                            newNeutron.SetVelocityX(vX);
+                            newNeutron.SetVelocityY(vY);
+
+                            newNeutrons.Add(newNeutron);
+                        }
                     }
                 }
-            }   
+            }
+
+            //Add new neutrons here
+            neutronList.AddRange(newNeutrons);
         }
 
         //private static Array addNeutrons
 
         private void drawBalls(PaintEventArgs e)//draws all screen objects
         {
-            foreach (Neutron ball in neutrons)//names the neutron we are looking at "ball", so it is refered to later
+            foreach (Neutron ball in neutronList)//names the neutron we are looking at "ball", so it is refered to later
             {
                 e.Graphics.FillEllipse(ball.PickBrush(), ball.GetXPos(), ball.GetYPos(), Neutron.NeutronWidth, Neutron.NeutronWidth);
                 e.Graphics.DrawEllipse(Pens.Black, ball.GetXPos(), ball.GetYPos(), Neutron.NeutronWidth, Neutron.NeutronWidth);

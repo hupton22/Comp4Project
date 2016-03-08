@@ -10,7 +10,15 @@ namespace Comp4_Project.Particles
 {
     class Atom : Particle
     {
-        public static int AtomWidth = 50;
+        public Atom() : this(0, 0)
+        {
+        }
+
+        public Atom(int xPos, int yPos) : base(xPos, yPos)
+        {
+        }
+
+        public static int AtomWidth = 20;//yes
         public bool hasSplit = false; 
 
         public Brush PickBrush()//returns a colour for the form to fill the ellipse with
@@ -26,15 +34,21 @@ namespace Comp4_Project.Particles
             }
 
             else return Brushes.White;
+        }//this changes the colour of the atom if it has split
+
+        public override int GetSize()
+        {
+            return Atom.AtomWidth;
         }
 
-
-        public void split()
+        protected override void OnInteraction()
         {
             this.hasSplit = true;
+        }
 
-            //create more neutrons
-            //addNeutrons(); 
+        protected override bool IsDisabled()
+        {
+            return hasSplit;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Comp4_Project.Particles
     class Neutron : Particle//Atom inherits all properties and methods of the Particle class
     {
         //The width of every ball
-        public static int NeutronWidth = 5;
+        public static int NeutronWidth = 6; //should be divisible by 2 :)
 
         private int velocityX;
         private int velocityY;
@@ -49,6 +49,21 @@ namespace Comp4_Project.Particles
 
             SetXPos(newXPos);
             SetYPos(newYPos);
+        }
+
+        protected override void OnInteraction()
+        {
+            //Nothing should be done on an interaction here shouldn't it?
+        }
+
+        public override int GetSize()
+        {
+            return Neutron.NeutronWidth;
+        }
+
+        protected override bool IsDisabled()
+        {
+            return false;
         }
 
         /**
