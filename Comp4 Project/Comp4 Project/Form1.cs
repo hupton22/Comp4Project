@@ -15,7 +15,7 @@ namespace Comp4_Project
     public partial class Form1 : Form
     {
 
-        Neutron[] neutrons = new Neutron[5]; //create an array that stores items of the custom type "neutron"
+        Neutron[] neutrons = new Neutron[50]; //create an array that stores items of the custom type "neutron"
         Atom[] atoms = new Atom[1];
         public double realDist = 0;
 
@@ -65,7 +65,7 @@ namespace Comp4_Project
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             e.Graphics.Clear(BackColor);
 
-            drawBalls(e);
+            drawBalls();
         }
 
         private void timerMoveBall_Tick(object sender, EventArgs e)
@@ -84,10 +84,12 @@ namespace Comp4_Project
                     //double ax = neutrons[i].GetXPos();
                     double xDist = (neutrons[i].GetXPos()) - (atoms[check].GetXPos());//find difference in x coordinate
                     double yDist = (neutrons[i].GetYPos()) - (atoms[check].GetYPos());//find difference in y coordinate
-                    realDist = Math.Sqrt((xDist * xDist) - (yDist * yDist));//pythagoras
-                    if ((realDist < 0.1) && (atoms[check].hasSplit == false))
+                    realDist = Math.Sqrt((xDist * xDist) + (yDist * yDist));//pythagoras
+                    if ((realDist < 10) && (atoms[check].hasSplit == false))
                     {
                         atoms[check].split();//split the atom that the neutron has approached
+                        //e.Graphics.DrawEllipse(Pens.Black, neutrons[i].GetXPos(), neutrons[i].GetYPos(), Atom.AtomWidth, Atom.AtomWidth);
+                        //e.Graphics.DrawEllipse(Pens.Black, atoms[check].GetXPos(), atoms[check].GetYPos(), Atom.AtomWidth, Atom.AtomWidth);
                     }
                 }
             }   
@@ -95,7 +97,7 @@ namespace Comp4_Project
 
         //private static Array addNeutrons
 
-        private void drawBalls(PaintEventArgs e)//draws all screen objects
+        private void drawBalls(PainEventArgs, e)//draws all screen objects
         {
             foreach (Neutron ball in neutrons)//names the neutron we are looking at "ball", so it is refered to later
             {

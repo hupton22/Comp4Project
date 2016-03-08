@@ -32,6 +32,7 @@ namespace Comp4_Project.Particles
         public void split()
         {
             this.hasSplit = true;
+
             //create more neutrons
             //addNeutrons(); 
         }
