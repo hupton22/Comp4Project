@@ -10,13 +10,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Comp4_Project
 {
     public partial class Form1 : Form
     {
 
-        Neutron[] neutrons = new Neutron[2]; //create an array that stores items of the custom type "neutron"
-        Atom[] atoms = new Atom[10];
+        //public int atomNumber = 20;
+        
+        Atom[] atoms = new Atom[50];
+        Neutron[] neutrons = new Neutron[150]; //creates and populates an array with neutron objects
+
         public double realDist = 0;
 
         public Form1()
@@ -40,7 +44,7 @@ namespace Comp4_Project
                 
             }
 
-            for (int i = 0; i < atoms.Length; i++ )
+            for (int i = 0; i < atoms.Length; i++)
             {
                 atoms[i] = new Atom();
 
@@ -49,8 +53,26 @@ namespace Comp4_Project
 
                 //maybe add a loop here to check if the atom currently having its location set
                 //is too close to any other atoms
-            }
 
+                for (int k = 0; k < 50; k++)
+                {
+                    for (int l = 0; l < 50; l++)
+                    {
+                        double xDist = (atoms[k].GetXPos()) - (atoms[l].GetXPos());//find difference in x coordinate
+                        double yDist = (atoms[k].GetYPos()) - (atoms[l].GetYPos());//find difference in y coordinate
+                        realDist = Math.Sqrt((xDist * xDist) + (yDist * yDist));//pythagoras
+                        int x = k;
+                        int y = l;
+                        if ((realDist < (Atom.AtomWidth)) && (x != y))//making sure we are not comparing an atom to itself!
+                        {
+                            atoms[k].SetXPos(random.Next(0, ClientSize.Width - Atom.AtomWidth));//reassign
+                            atoms[k].SetYPos(random.Next(0, ClientSize.Height - Atom.AtomWidth));
+                        }
+                    }
+                }
+            }
+            //logic to relcoate atoms that are too close to each other
+            
                 this.SetStyle(
                     ControlStyles.AllPaintingInWmPaint |
                     ControlStyles.UserPaint |
