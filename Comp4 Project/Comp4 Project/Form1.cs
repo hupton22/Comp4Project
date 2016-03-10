@@ -33,6 +33,34 @@ namespace Comp4_Project
             return Math.PI * angle / 180.0;
         }
 
+        //private int chooseSign()
+        //{
+        //    int sign = 0;
+        //    Random random = new Random();
+        //    sign = random.Next(-1, 1);
+        //    if (sign == 0)
+        //    {                
+        //        sign = chooseSign();
+        //        return sign;  
+        //    }
+
+        //    else return sign;  
+        //}
+
+        //private int chooseVel()
+        //{
+        //    int vel = 0;
+        //    Random random = new Random();
+        //    vel = random.Next(-5, 5);
+        //    if (vel != 0)
+        //    {
+        //        r
+        //        svel = chooseSign();
+        //    }
+
+        //    else return sign; 
+        //}
+
         private void Form1_Load(object sender, EventArgs e)
         {
             Random random = new Random();
@@ -43,9 +71,6 @@ namespace Comp4_Project
                 Neutron neutron = new Neutron();
 
                 //int angle = (random.Next(1, 360));
-
-
-                //double a = ();
                 //neutron.SetVelocityX(Math.Cos(DegreeToRadian(angle)));
 
                 neutron.SetVelocityX(random.Next(1, 5));
@@ -127,6 +152,7 @@ namespace Comp4_Project
 
                         for (int i = 0; i < 2; i++)
                         {
+                            //System.Threading.Thread.Sleep(100);
                             int vX = random.Next(1, 5);
                             int vY = random.Next(1, 5);
 
