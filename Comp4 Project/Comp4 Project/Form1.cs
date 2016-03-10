@@ -19,7 +19,7 @@ namespace Comp4_Project
         //public int atomNumber = 20;
         
         Atom[] atoms = new Atom[84]; //initialise the array of atoms
-        List<Neutron> neutronList = new List<Neutron>(); //initialise the list of 
+        List<Neutron> neutronList = new List<Neutron>(); //initialise the list of neutrons
 
         public double realDist = 0;
 
