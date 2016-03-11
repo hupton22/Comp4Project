@@ -8,39 +8,51 @@ namespace Comp4_Project.Particles
 {
     abstract class Particle : getCoords 
     {
-        private int xPos;
-        private int yPos;
+        private double xPos;
+        private double yPos;
 
         public Particle() : this(0, 0)
         {
         }
 
         
-        protected Particle(int xPos, int yPos)
+        protected Particle(double xPos, double yPos)
         {
             this.xPos = xPos;
             this.yPos = yPos;
         }
 
         //Getters and setters for x and y coordinates
-        public void SetXPos(int xPos)
+        public void SetXPos(double xPos)
         {
             this.xPos = xPos;
         }
 
         public int GetXPos()
         {
-            return xPos;//could be this.xPos
+            return (int) (xPos + 0.5);//could be this.xPos
         }
 
-        public void SetYPos(int yPos)
+        public void SetYPos(double yPos)
         {
             this.yPos = yPos;
         }
 
         public int GetYPos()
         {
-            return yPos;
+            return (int) (yPos + 0.5); //do you know why I am doing this? I don't :/ well the neutorns can actually move, and therefore they can get a fraction number, so I am using this
+            //number internally all the time, but when I want to draw something on the screen I need integer numbers, and then I am converting the number with the right rule so that 
+            // 0.5 would be 1 and 0.4 would be 0 : that solves the problem with the rotating the vector thingy ;) so that should work for now let's check it su be sure
+        }
+
+        protected double GetRealXPos()
+        {
+            return this.xPos;
+        }
+
+        protected double GetRealYPos() 
+        {
+            return this.yPos;
         }
 
         public abstract int GetSize(); //Returns the size of the particle
