@@ -32,21 +32,6 @@ namespace Comp4_Project
         {//whicle still sending them off at random angles. this wouild usee trigonometry, and so a function was needed to convert angles measured in degrees to angles in radians...
             return Math.PI * angle / 180.0;//which are the default angle unit in c#
         }
-
-        //private int chooseSign()
-        //{
-        //    int sign = 0;
-        //    Random random = new Random();
-        //    sign = random.Next(-1, 1);
-        //    if (sign == 0)
-        //    {                
-        //        sign = chooseSign();
-        //        return sign;  
-        //    }
-
-        //    else return sign;  
-        //}
-
         //private int chooseVel()
         //{
         //    int vel = 0;
