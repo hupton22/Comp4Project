@@ -8,41 +8,41 @@ using System.Threading.Tasks;
 
 namespace Comp4_Project.Particles
 {
-    class Neutron : Particle//Atom inherits all properties and methods of the Particle class
+    class Neutron : Particle
     {
-        //The width of every ball
-        public static int NeutronWidth = 6; //should be divisible by 2 :)
+        //The width of every neutron
+        public static int Size = 6; 
 
-        private int velocityX;
-        private int velocityY;
+        private double velocityX;
+        private double velocityY;
 
         public Brush PickBrush()
         {
             return Brushes.Red;//setting the colour of all neutrons to red
         }
 
-        public void move(int maxWidth, int maxHeight)//moving each neutron
+        public override void Move(int maxWidth, int maxHeight)//moving each neutron
         {
-            int newXPos = GetXPos() + velocityX;
+            double newXPos = GetRealXPos() + velocityX;
             
             if (newXPos < 0)
             {
                 newXPos = 0;
                 velocityX = (velocityX * -1);
             }
-            else if ((newXPos + Neutron.NeutronWidth) > maxWidth)
+            else if ((newXPos + Neutron.Size) > maxWidth)
             {
                 velocityX = (velocityX * -1);
             }
 
-            int newYPos = GetYPos() + velocityY;
+            double newYPos = GetRealYPos() + velocityY;
 
             if (newYPos < 0)
             {
                 newYPos = 0;
                 velocityY = (velocityY * -1);
             }
-            else if ((newYPos + Neutron.NeutronWidth) > maxHeight)
+            else if ((newYPos + Neutron.Size) > maxHeight)
             {
                 velocityY = (velocityY * -1);
             }
@@ -58,7 +58,7 @@ namespace Comp4_Project.Particles
 
         public override int GetSize()
         {
-            return Neutron.NeutronWidth;
+            return Neutron.Size;
         }
 
         protected override bool IsDisabled()
@@ -69,22 +69,22 @@ namespace Comp4_Project.Particles
         /**
          * getters and setters for velocity
          */
-        public void SetVelocityX(int vX)
+        public void SetVelocityX(double vX)
         {
             velocityX = vX;
         }
 
-        public int GetVelocityX()
+        public double GetVelocityX()
         {
             return velocityX;
         }
 
-        public void SetVelocityY(int vY)
+        public void SetVelocityY(double vY)
         {
             velocityY = vY;
         }
 
-        public int GetVelocityY()
+        public double GetVelocityY()
         {
             return velocityY;
         }

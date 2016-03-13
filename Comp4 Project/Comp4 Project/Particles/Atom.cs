@@ -10,6 +10,11 @@ namespace Comp4_Project.Particles
 {
     class Atom : Particle
     {
+        /* static field for the AtomWidth*/
+        public static int Size = 20;
+
+        private bool hasSplit = false; 
+
         public Atom() : this(0, 0)
         {
         }
@@ -18,27 +23,19 @@ namespace Comp4_Project.Particles
         {
         }
 
-        public static int AtomWidth = 20;
-        public bool hasSplit = false; 
-
         public Brush PickBrush()//returns a colour for the form to fill the ellipse with
         {
-            if (this.hasSplit == false)
-            {
-                return Brushes.Blue;//returns blue if atom has not split
-            }
+            return hasSplit ? Brushes.Green : Brushes.Blue;
+        }
 
-            else if (this.hasSplit == true)
-            {
-                return Brushes.Green;//returns green if atom has split
-            }
-
-            else return Brushes.White;
-        }//this changes the colour of the atom if it has split
+        public override void Move(int maxWidth, int maxHeight)
+        {
+            //this doesn't move at all
+        }
 
         public override int GetSize()
         {
-            return Atom.AtomWidth;
+            return Atom.Size;
         }
 
         protected override void OnInteraction()
