@@ -16,7 +16,7 @@ namespace Comp4_Project
     public partial class Form1 : Form
     {
 
-        //public int atomNumber = 20;
+       
         
         Atom[] atoms = new Atom[84]; //initialise the array of atoms
         List<Neutron> neutronList = new List<Neutron>(); //initialise the list of neutrons
@@ -45,33 +45,7 @@ namespace Comp4_Project
             newNeutron.SetVelocityY(newVY);
         }
 
-        //private int chooseSign()
-        //{
-        //    int sign = 0;
-        //    Random random = new Random();
-        //    sign = random.Next(-1, 1);
-        //    if (sign == 0)
-        //    {                
-        //        sign = chooseSign();
-        //        return sign;  
-        //    }
-
-        //    else return sign;  
-        //}
-
-        //private int chooseVel()
-        //{
-        //    int vel = 0;
-        //    Random random = new Random();
-        //    vel = random.Next(-5, 5);
-        //    if (vel != 0)
-        //    {
-        //        r
-        //        svel = chooseSign();
-        //    }
-
-        //    else return sign; 
-        //}
+     
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -82,9 +56,7 @@ namespace Comp4_Project
             {
                 Neutron neutron = new Neutron();//create a new neutron object
 
-                //int angle = (random.Next(1, 360));
-                //neutron.SetVelocityX(Math.Cos(DegreeToRadian(angle)));
-
+               
                 neutron.SetVelocityX(4);//select a random velocity in the x direction
                 neutron.SetVelocityY(3);//same in the y
 
@@ -143,15 +115,7 @@ namespace Comp4_Project
             Refresh();
         }
 
-        //private int generateSign()
-        //{
-        //    Random random = new Random();
-        //    int sign = random.Next(-1, 1); 
-        //    if(sign == 0)
-        //    {
-        //        generateSign
-        //    }
-        //}
+      
 
         private void moveBalls()//procedure to move all neutrons
         {

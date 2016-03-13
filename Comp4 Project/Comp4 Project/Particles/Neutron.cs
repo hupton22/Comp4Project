@@ -10,8 +10,7 @@ namespace Comp4_Project.Particles
 {
     class Neutron : Particle//Atom inherits all properties and methods of the Particle class
     {
-        //The width of every ball
-        public static int NeutronWidth = 6; //should be divisible by 2 :)
+        public static int NeutronWidth = 6; 
 
         private double velocityX;
         private double velocityY;
@@ -24,7 +23,7 @@ namespace Comp4_Project.Particles
         public void move(int maxWidth, int maxHeight)//moving each neutron
         {
             double newXPos = GetRealXPos() + velocityX;
-            //int newXPos = (int) (realNewXPos + 0.5);
+           
 
             if (newXPos < 0)
             {
@@ -37,7 +36,7 @@ namespace Comp4_Project.Particles
             }
 
             double newYPos = GetRealYPos() + velocityY;
-            //int newYPos = (int) (realNewYPos + 0.5);
+           
 
             if (newYPos < 0)
             {

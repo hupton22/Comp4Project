@@ -40,9 +40,7 @@ namespace Comp4_Project.Particles
 
         public int GetYPos()
         {
-            return (int) (yPos + 0.5); //do you know why I am doing this? I don't :/ well the neutorns can actually move, and therefore they can get a fraction number, so I am using this
-            //number internally all the time, but when I want to draw something on the screen I need integer numbers, and then I am converting the number with the right rule so that 
-            // 0.5 would be 1 and 0.4 would be 0 : that solves the problem with the rotating the vector thingy ;) so that should work for now let's check it su be sure
+            return (int) (yPos + 0.5); 
         }
 
         protected double GetRealXPos()
