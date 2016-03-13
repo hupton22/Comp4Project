@@ -8,39 +8,49 @@ namespace Comp4_Project.Particles
 {
     abstract class Particle : getCoords 
     {
-        private int xPos;
-        private int yPos;
+        private double xPos;
+        private double yPos;
 
         public Particle() : this(0, 0)
         {
         }
 
         
-        protected Particle(int xPos, int yPos)
+        protected Particle(double xPos, double yPos)
         {
             this.xPos = xPos;
             this.yPos = yPos;
         }
 
         //Getters and setters for x and y coordinates
-        public void SetXPos(int xPos)
+        public void SetXPos(double xPos)
         {
             this.xPos = xPos;
         }
 
         public int GetXPos()
         {
-            return xPos;//could be this.xPos
+            return (int) (xPos + 0.5);//could be this.xPos
         }
 
-        public void SetYPos(int yPos)
+        public void SetYPos(double yPos)
         {
             this.yPos = yPos;
         }
 
         public int GetYPos()
         {
-            return yPos;
+            return (int) (yPos + 0.5); 
+        }
+
+        protected double GetRealXPos()
+        {
+            return this.xPos;
+        }
+
+        protected double GetRealYPos() 
+        {
+            return this.yPos;
         }
 
         public abstract int GetSize(); //Returns the size of the particle
