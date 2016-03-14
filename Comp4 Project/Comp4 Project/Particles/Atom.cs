@@ -18,22 +18,25 @@ namespace Comp4_Project.Particles
         {
         }
 
-        public static int AtomWidth = 20;
+        public static int AtomWidth = 15;
         public bool hasSplit = false; 
 
         public Brush PickBrush()//returns a colour for the form to fill the ellipse with
         {
-            if (this.hasSplit == false)
-            {
-                return Brushes.Blue;//returns blue if atom has not split
-            }
 
-            else if (this.hasSplit == true)
-            {
-                return Brushes.Green;//returns green if atom has split
-            }
+            return !hasSplit ? Brushes.Blue : Brushes.Green;
 
-            else return Brushes.White;
+            //if (this.hasSplit == false)
+            //{
+            //    return Brushes.Blue;//returns blue if atom has not split
+            //}
+
+            //else if (this.hasSplit == true)
+            //{
+            //    return Brushes.Green;//returns green if atom has split
+            //}
+
+            //else return Brushes.White;
         }//this changes the colour of the atom if it has split
 
         public override int GetSize()
