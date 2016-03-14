@@ -22,6 +22,9 @@ namespace Comp4_Project
         List<Neutron> neutronList = new List<Neutron>(); //initialise the list of neutrons
 
         public double realDist = 0;
+        
+        int userSpeed = Convert.ToInt16(Speed.Text);
+        userSpeed = Convert.ToInt16(speed.tex
 
         public Form1()
         {

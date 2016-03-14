@@ -16,6 +16,8 @@ namespace Comp4_Project.Particles
         private int velocityX;
         private int velocityY;
 
+
+
         public Brush PickBrush()
         {
             return Brushes.Red;//setting the colour of all neutrons to red
